@@ -4,9 +4,8 @@ function getArrayParams(...arr) {
   }
   let min = Math.min(...arr);
   let max = Math.max(...arr);
-  let sum = 0;
   let avg = Number(
-    (arr.reduce((acc, cur) => acc + cur, sum) / arr.length).toFixed(2)
+    (arr.reduce((acc, cur) => acc + cur, 0) / arr.length).toFixed(2)
   );
   return { min: min, max: max, avg: avg };
 }
