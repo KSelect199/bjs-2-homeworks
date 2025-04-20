@@ -9,11 +9,9 @@ class AlarmClock {
       throw new Error("Отсутствуют обязательные аргументы'");
     }
 
-    this.alarmCollection.map((value) => {
-      if (value.time === time) {
-        console.warn("Уже присутствует звонок на это же время");
-      }
-    });
+    if (this.alarmCollection.some((value) => value.time === time)) {
+      console.warn("Уже присутствует звонок на это же время");
+    }
 
     this.alarmCollection.push({ callback, time, canCall: true });
   }
@@ -25,8 +23,11 @@ class AlarmClock {
   }
 
   getCurrentFormattedTime() {
-    let date = new Date();
-    return date.getHours() + ":" + date.getUTCMinutes();
+    let date = new Date().toLocaleTimeString("ru-Ru", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return date;
   }
 
   start() {
